@@ -1,0 +1,12 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: serif;
+}
+.box-1 {
+    width: 300px;
+    font-size: 50px;
+    padding: 50px;
+    border: 10px dashed black;
+    margin-left: 50px;
+  }
