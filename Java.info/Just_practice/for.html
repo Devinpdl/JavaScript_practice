@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var chr;
+    for(var a=1 ; a<=6 ; a++ ){
+        for(var b=1; b<a; b++){
+            document.write("*");
+         
+    }
+    document.write("<br>");
+}
+// let fruit = prompt("Which fruit to buy?", "Banana");
+// let bag = {
+// [fruit]: 5, // the name of the property is taken from the variable fruit
+// };
+// alert(bag.Banana); // 5 if fruit="apple"
+let fruit = prompt("Which fruit to buy?", "apple");
+let bag = {
+[fruit + 'Computers']: 5 // bag.appleComputers = 5
+};
+alert("Your value is: " +bag.appleComputers);
+</script>
+</body>
+</html>

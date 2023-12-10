@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulation</title>
+    <style>
+        .bg-black {
+            background-color: #212121;
+            color: #fff;
+        }
+
+        .heading {
+            color: blue; /* Default color for the heading */
+        }
+
+        .heading span {
+            color: red; /* Color for the text inside the span */
+            background-color: yellow; /* Background color for the text inside the span */
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div>
+
+        <h1 id="title" class="heading">DOM Learning with <span style="display: none;">Me</span></h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit amet.</h2>
+        <h2>Lorem ipsum dolor sit amet.</h2>
+        <input type="password" name="" id="">
+
+        <ul>
+            <li class="list-item">One <span id ="Span1"> I'm Here</span></li>
+            <li class="list-item">Two</li>
+            <li class="list-item">Three</li>
+            <li class="list-item">Four</li>
+        </ul>
+
+        <button onclick="changeColor()">Change Color</button>
+    </div>
+
+    <script>
+        function changeColor() {
+            // JavaScript code to change color goes here
+            document.body.classList.toggle('bg-black');
+        }
+    </script>
+</body>
+</html>

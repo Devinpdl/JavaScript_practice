@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    
+    <div id="cartItems"></div>
+    <div>Total Price: $<span id="totalPrice">0</span></div>
+
+    <script>
+        const shoppingCart = [
+            {
+                itemName: "js course",
+                price: "500"
+            },
+            {
+                itemName: "react course",
+                price: 800
+            },
+            {
+                itemName: "node course",
+                price: "600"
+            },
+            {
+                itemName: "python course",
+                price: "700"
+            }
+        ];
+
+        function validatePrice(price) {
+            // Check if the price is a valid number
+            return !isNaN(parseFloat(price)) ? parseFloat(price) : 0;
+        }
+
+        function updateCart() {
+            const cartItemsElement = document.getElementById('cartItems');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            let totalPrice = 0;
+
+            cartItemsElement.innerHTML = ''; // Clear previous items
+
+            shoppingCart.forEach(item => {
+                const price = validatePrice(item.price);
+                totalPrice += price;
+
+                // Display item in the cart
+                cartItemsElement.innerHTML += `<div>${item.itemName} - $${price}</div>`;
+            });
+
+            // Update total price
+            totalPriceElement.innerText = totalPrice;
+        }
+        // Initial update
+        updateCart();
+    </script>
+</body>
+</html>
