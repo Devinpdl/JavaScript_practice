@@ -14,7 +14,7 @@ let numGuess = 1;
 let playGame = true;
 if (playGame) {
     submit.addEventListener('click', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // avoids returning value of the events back to server
         const guess = parseInt(userInput.value);
         validateGuess(guess);
     });
@@ -31,7 +31,7 @@ function validateGuess(guess) {
         prevguess.push(guess);
         CleanUpGuess(guess);
         checkGuess(guess);
-    }
+    } 
 
     if (numGuess > 10) {
         displayMessage(`Game Over, Random number was ${randomNumber}`);
@@ -82,6 +82,7 @@ function newgame() {
         remaining.innerHTML = `${11 - numGuess}`;
         userInput.removeAttribute('disabled');
         submit.removeAttribute('disabled');
+        lowOrHigh.innerHTML='';
         startOver.removeChild(p);
         playGame = true;
     });

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing a Number Game</title>
+</head>
+<body style="background-color: #212121 ; color:#fff">
+    <nav>
+        <a href="/">Home</a>
+        <a href="https:www.facebook.com/devin.paudyal">Facebook Profile</a>
+    </nav>
+    <div class="container">
+        <h1>Guessing a Number Game</h1>
+        <p>Try and guess a random number between 1 and 100</p>
+        <p>You have 10 attempts to guess a right number.</p>
+
+        <form class="form">
+           <label for="guessField" id="guess">Guess a Number</label>
+           <input type="text" id="guessField" class="guessField">
+           <input type="submit" id="subt" value="Submit your Guess" class="guessSubmit">
+        </form>
+        <div class="resultparameters">
+            <p>Your Previous Guesses: <span class="yourprevguesses"></span></p>
+            <p>Attempts Remaining: <span class="attemptsremain">10</span></p>
+            <p class="loworHigh"></p>
+        </div>
+    </div>
+    <script src="01_guessno.js"></script>
+</body>
+</html>
