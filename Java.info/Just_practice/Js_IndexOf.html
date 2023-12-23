@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var a = ["Sanjay", "Aman", "Rehman", "Aman", "Rahul"];
+      document.write(a + "<br><br>");
+
+      // Synatx for IndexOf is --> indexOf("Search Item",Start);
+
+      var b = a.indexOf("Rehman");
+      document.write(b + "<br> <br>");
+      var c = a.indexOf("Aman", 2);
+      document.write(c + "<br> <br>");
+      //When We search the value that is not in array it will return negative value
+      var d = a.indexOf("Suman", 2);
+      document.write(d + "<br> <br>");
+
+      //Syntax for LastIndexOf --> LastIndexOf("Search Item",Start);
+
+      var e= a.lastIndexOf("Aman",2);
+      document.write(e);
+    </script>
+  </body>
+</html>

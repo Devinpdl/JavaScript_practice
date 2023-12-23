@@ -10,3 +10,10 @@
     border: 10px dashed black;
     margin-left: 50px;
   }
+  .box-2 {
+    width: 300px;
+    font-size: 50px;
+    padding: 50px;
+    border: 40px dashed green;
+    margin-left: 50px;
+  }

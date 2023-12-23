@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body style="background-color:#212121 ;color:#fff">
+    <ol class="language">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+</body>
+<script>
+    function UnOptimizedWay(langName){
+        const li  = document.createElement('li');
+        li.innerHTML  =  `${langName}`;
+        document.querySelector('.language').appendChild(li);
+    }
+    UnOptimizedWay("TypeScript")
+
+    function OptimizedWay(langName){
+        const li  = document.createElement('li');
+        li.appendChild(document.createTextNode(langName)) // Or, This can be Done as;
+        // const addText = document.createTextNode(langName);
+        // li.appendChild(addText);
+        document.querySelector('.language').appendChild(li)
+    }
+    OptimizedWay("Golang")
+
+    function addLanguage(langName){
+        let ol = document.querySelector(".language");
+        let li = document.createElement("li");
+        li.textContent = langName;
+        ol.appendChild(li);
+    }
+    addLanguage("Python");
+    addLanguage("Java");
+
+    function ColorChanges(langName){
+        let lang = document.querySelectorAll('.language li');
+        lang.forEach(function(item){
+            item.style.color = '#fff';
+            });
+            langName.style.color = '#ff0000';
+    }
+    ColorChanges(document.querySelector('.language li:nth-child(2)'));
+
+    //++++++++++++ EDIT ++++++++++++++++++++++++
+
+    const secondLang = document.querySelector('li:nth-child(2)');
+    // secondLang.innerHTML ="Mojo"; Don't Use this Way
+    // Rather Use this way;
+    const newLi = document.createElement('li');
+    newLi.textContent = "Mojo";
+    secondLang.replaceWith(newLi);
+
+    //Edit
+    
+    const newlang = document.querySelector('li:first-child');
+    newlang.outerHTML='<li>New Values</li>'
+
+    // ++++++++++++ REMOVE +++++++++++++++++++++++++
+
+    const lastlang = document.querySelector('li:last-child');
+    lastlang.remove();
+
+
+
+
+
+</script>
+</html>

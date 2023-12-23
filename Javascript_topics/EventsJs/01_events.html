@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #212121; color: aliceblue;">
+    <h2>Your Wonderful image</h2>
+    <div >
+        <ol id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+            <li> <button id="myButton">Click me</button></li>
+        </ol>
+   </div>
+</body>
+<script>
+    document.getElementById("myButton").addEventListener("click", function(){
+ var tagName = this.tagName;
+ alert("The tag name of the clicked element is: " + tagName);
+});
+    // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked")
+    // } 
+    /*
+    Don't use onlick method cuz it lacks much of the functionality..
+    So we will use addEventListener instead of onclick...
+  */
+
+     // attachEvent()
+    // jQuery - on
+/*
+    attachEvent() and jQuery - onEventLister was old way of using as just like addEventListener.
+    We don't use this more..
+  */
+    
+    // document.querySelector('#images').addEventListener('click', function(e){
+    //     // Here in the function(e) , e is the event object
+    //     console.log(e);
+        /*
+    Events are of two types:
+    1)Browser events:
+    Browser events are those that occur due to actions taken by the user or browser. 
+    They include mouse clicks, key presses, window resize events, and so on.
+    2) Environment events:
+    These are triggered by the operating system or other external sources such as timers 
+    or network responses.
+    Environment events are those that occur due to changes in the environment outside 
+    the control of the web application. These can include network disruptions, power failures,
+    or operating system failures.
+  */
+  // +++++ STUDY THIS EVENT +++++
+   // type, timestamp, preventDefault()
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+//++++++++++++++ EVENT PROPAGATION++++++++++++++
+//   document.getElementById('images').addEventListener('click', function(e){
+//         console.log("clicked inside the ul");
+//     }, false) // Here it's false by Default even if we don't write ",false after curly braces close '}'."
+    // False do works as First working with the inner events and then working with the outer events.
+    // Jastai vhitra bata baahira niskiye jastai...
+
+    //+++++++ EVENT PROPAGATION IS OF TWO TYPES +++++
+    /*
+    1) Capture phase (from parent to child i.e; true ) : It starts from the outermost element (window) and goes down to the innermost.
+    1) Capture phase : It starts from the top parent element (document) down to the child elements.
+    1) Capture phase (From Outer To Inner i.e; true ):
+    The capture phase starts at the highest level parent element (window), goes down to the target element, 
+    and ends at the innermost child element.
+    2) Bubbling Phase (From Inner To Outer i.e; false by default, can be written false, mann vayena vani nalekhye pni hunxa
+    by default use vaako hunxa false chae):
+    It starts from the innermost child element and moves upward to the target element and finally reaches the
+    highest level parent element (window).
+    */
+//    document.getElementById('images').addEventListener('click', function(e){
+//     console.log(`Clicked Inside the ul, i.e; Parent Node`);
+//    }, false)
+
+//    document.getElementById('owl').addEventListener('click', function(e){
+//     console.log("You Clicked on Owl Image");
+//    }, false)
+   // NOW, WHEN YOU DO USE TRUE, I.E; CAPTURING MODE THEN LET'S SEE
+
+//    document.getElementById('images').addEventListener('click', function(e){
+//     console.log(`Clicked Inside the ul, i.e; Parent Node`);
+//    }, true)
+
+//    document.getElementById('owl').addEventListener('click', function(e){
+//     console.log("You Clicked on Owl Image");
+//    }, true)
+//++++++  WHEN WE DON'T WANT BUBBLING, I.E; NOT WANTING THAT THE "INNER ELEMENT PASSING ANOTHER EVENT"
+//WE USE .STOPPROPAGATION to seperate inner element and outer element remains seperate.
+// document.getElementById('images').addEventListener('click', function(e){
+//     console.log(`Clicked Inside the ul, i.e; Parent Node`);
+//    }, false)
+
+//    document.getElementById('owl').addEventListener('click', function(e){
+//     console.log("You Clicked on Owl Image");
+//     e.stopPropagation();
+//    }, false)
+
+//    document.getElementById('google').addEventListener('click', function(e){
+//     e.preventDefault();
+//     e.stopPropagation();
+//     console.log("Google is Clicked");
+//    }, false)
+
+//++++++++ JUST LIKE SMALL PROJECT LET'S DISSAPPEAR THE IMAGE WHEN USER CLICKS THE IMAGES.
+
+// document.querySelector('#images').addEventListener('click', function(e){
+//     // e.preventDefault();
+//     // e.stopPropagation();
+//     // console.log(e.target); // .target gives the idea from which targets the events are coming from.
+//     console.log(e.target.parentNode);
+//     let removeNow= e.target.parentNode;
+//     // removeNow.remove(); // First approach
+//     // console.log(removeNow.parentNode);
+//     removeNow.parentNode.removeChild(removeNow);
+//     //Here, from  e.target.parentNode we get ul and from removeNow.parentNode we get child i.e; li.
+//     //So, it makes easy to select the whole child and remove it.
+//     // Thus we're removing the child li at once when clicked just by selecting ul parentNode.
+
+// }, false) // false works as event propagation either to enable or to disable(i.e; by using true) Bubbling mode(inner child to outer parent)
+//Here, this function will remove whole ul if clicked outside the images that's when it's clicked within the li other than images.
+//Then, it will completely remove whole images and li items.
+
+//+++++++++++++ TO AVOID REMOVING WHOLE LI WHEN CLICKED OUTSIDE THE IMAGE ++++++++++++++
+document.querySelector('#images').addEventListener('click', function(e){
+    console.log(e.target.parentNode);
+    console.log(e.target.tagName);
+    if(e.target.tagName==='IMG'){
+        console.log(e.target.id);
+        let removeIt= e.target.parentNode;
+    removeIt.parentNode.removeChild(removeIt);
+    }
+    
+})
+
+</script>
+</html>

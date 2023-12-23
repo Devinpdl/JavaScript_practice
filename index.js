@@ -65,4 +65,4 @@ supplies inside the function's parameter called 'LastName'*/
 function square(number){
     return number*number;
 }
-console.log(square(7));
+console.log(square(3+3)); //Arguments(named 3+3) maa expression pathauna paaunxa.

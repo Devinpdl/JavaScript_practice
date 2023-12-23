@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var ages = [10, 13, 18, 20];
+      document.write(ages + "<br><br>");
+
+      var b = ages.some(checkAdult); // Here we pass fuction CheckAdult in Some-Methods.
+      document.write(b + "<br><br>");
+
+      function checkAdult(pass_parameters) {
+        return pass_parameters >= 18;
+      }
+
+      //To check not in array through some-Methods in array
+      var umer = [10, 13, 2, 15];
+      document.write(umer + "<br><br>");
+
+      var c = umer.some(checkMe); // Here we pass fuction CheckAdult in Some-Methods.
+      document.write(c + "<br><br>");
+
+      function checkMe(pass_parameter) {
+        return pass_parameter >= 18;
+      }
+
+      //JS_Array_EveryMethod where it returns all true value
+
+      var myage = [100, 19, 25, 20];
+      document.write(myage + "<br><br>");
+
+      var d = myage.every(checkit);
+      document.write(d + "<br><br>");
+
+      function checkit(age) {
+        return age >= 18;
+      }
+      //JS_Array_EveryMethod where it returns not all true value
+
+      var hereage = [10, 19, 15, 20];
+      document.write(hereage + "<br><br>");
+
+      var e = hereage.every(checkhere);
+      document.write(e + "<br><br>");
+
+      function checkhere(anyname) {
+        return anyname >= 18;
+      }
+    </script>
+  </body>
+</html>

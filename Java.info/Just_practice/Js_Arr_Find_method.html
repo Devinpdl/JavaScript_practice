@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var ages = [10,23,19,20];
+document.write(ages + "<br><br>");
+
+var b=ages.find(checkAdult);
+document.write(b + "<br><br>");
+
+function checkAdult(age){
+    /* Here in function CheckAdult(age-parameter), 
+    In age parameter the value of 1st age = 10 is passed and checked the condition
+    if age>=18 if no then next age = 23 is passed and checked if age>=18 then
+    it executes the find method once the condition is true and stops executing.
+*/
+return age >= 18;
+}
+
+var umer = [10,23,19,20];
+document.write(umer + "<br><br>");
+
+var c=umer.findIndex(checkMe);
+document.write(c + "<br><br>");
+
+function checkMe(jpt){
+
+return jpt >= 18;
+}
+
+</script>
+</body>
+</html>

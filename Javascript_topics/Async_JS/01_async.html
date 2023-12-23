@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async JS</title>
+</head>
+<body style="background-color:#212121 ;color:#fff">
+    <h1 id="myid">Asynchronous Code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const callmenow = function() {
+        alert("Devin Paudyal");
+    }
+    setTimeout(callmenow, 2000);
+    // Here Don't execute callmenow as just like 'callmenow()' inside setTimeout().
+    // Instead give the references as like just writing 'callmenow' which means giving the references,
+    // But not executing it as just like calling function!
+    // setTimeout does even call to an API also.
+
+    // ++++ NOW CHANGING H1 ELEMENTS ABOVE ++++++++++++++
+    // document.querySelector('h1').innerHTML = " - Here, My Name is Samundra!"; //It's 
+     //Without using id inside h1 tag.
+    // Although, Here it's Changing The Content Inside h1 Element.
+   
+
+    //+++++++ OR ++++++ LET WHEN WE USED ID WITHIN INSIDE OF h1 TAG
+    document.querySelector('#myid').innerHTML= "- Here, My Name is Samundra!"
+
+    
+    // ++++ NOW CHANGING H1 ELEMENTS AFTER 3 SECONDS ++++++
+    const changeit = function(){
+        document.querySelector('h1').innerHTML= 'I Love JS';
+    }
+
+    const holdit = setTimeout(changeit, 6000);
+
+    // +++ NOW IF THE EVENT IS NOT HAPPENING WITHIN THE GIVEN TIMEFRAME THEN HOW CAN WE STOP FROM EXECUTING??++
+    // ++++ STOP THE TIMEOUT FUNCTION ++++++++++++++++++++++++++
+    let stopBtn = document.querySelector('#stop');
+    stopBtn.addEventListener('click', function(){
+        clearTimeout(holdit); // This will remove or stop the Timeout Function from Executing
+        alert("It is STOPPED");
+    });
+</script>
+</html>

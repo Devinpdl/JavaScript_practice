@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Learning with Me</title>
+  </head>
+  <body style="background-color: #212121; color: #fff">
+    <div class="parent">
+        <!-- This is a Comment -->
+      <div class="day">Sunday</div>
+      <div class="day">Monday</div>
+      <div class="day">Tuesday</div>
+      <div class="day">Wednesday</div>
+    </div>
+  </body>
+  <script>
+    const parent = document.querySelector(".parent");
+    // console.log(parent);
+    // console.log(parent.children);
+    // console.log(parent.children[3].textContent);
+    for (let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].textContent);
+    }
+    parent.children[2].style.color='yellow'
+    // console.log(parent.lastElementChild);
+    // console.log(parent.firstElementChild);
+
+    // const Dayone = document.querySelector('.day')
+    // console.log(Dayone);
+    // // Now, We Can also traverse from child to parent.
+    // const MovingtoParents = Dayone.parentElement;
+    // console.log(MovingtoParents);
+    // // Now, We Can also traverse from parent to child.
+    // const MovingtoChild = MovingtoParents.children[2];
+    // console.log(MovingtoChild);
+    // // Now, We Can Move to next Siblings too.
+    // console.log(MovingtoChild.nextElementSibling);
+
+    console.log("NODES:", parent.childNodes);
+  </script>
+</html>
