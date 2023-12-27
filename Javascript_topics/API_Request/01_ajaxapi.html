@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+    <!-- 
+        This is a simple HTML document with inline styles setting the background color.
+
+        The following JavaScript code creates an XMLHttpRequest object and makes a GET request to the GitHub API.
+
+        0	UNSENT: The XMLHttpRequest object has been created, but open() method has not been called yet.
+        1	OPENED: open() method has been called. The request is not yet sent.
+        2	HEADERS_RECEIVED: send() method has been called, and headers and status are available.
+        3	LOADING: Downloading; responseText holds partial data.
+        4	DONE: The operation is complete.
+
+        The following code logs the readyState at different stages to track the state of the XMLHttpRequest.
+        Note: This code doesn't handle the response or errors. In a real application, you would typically
+        set up event listeners, such as onreadystatechange, to handle these aspects.
+    -->
+
+</body>
+<script>
+    // Define the URL for the API request
+    const requestUrl = 'https://api.github.com/users/Devinpdl';
+
+    // Create a new XMLHttpRequest object
+    const XhR = new XMLHttpRequest();
+
+     // Open a GET request to the specified URL
+     XhR.open('GET', requestUrl);
+
+    // Log the initial readyState (0: UNSENT)
+    // console.log(XhR.readyState);
+
+    // Log a message (Here) to the console
+    // console.log('Here');
+
+    // Log the readyState after the message is logged (still 0: UNSENT)
+    // console.log(XhR.readyState);
+
+    // XhR.onreadystatechange = function(){
+    //     console.log(XhR.readyState);
+    //     //++++++ NOW TO DETECT STATE ++++++++++++++
+    //     if(XhR.readyState===4){
+    //         const data = (this.responseText);
+    //         // Here we wrapped into parenthesis because it's being object now.
+    //         // After that we can convert it into;
+    //         //1)Numbers by: Number(this.responseText)
+    //         //2)Objects by: JSON.parse(this.responseText)
+    //         //3)Into Strings by: String(this.responseText)
+
+    //         console.log(typeof data); // It's now being String
+    //         console.log(data.followers);
+
+    //     }
+    // }
+    // Thus to make object we do JSON.parse(this.responseText). Let's see
+
+    XhR.onreadystatechange = function(){
+        console.log(XhR.readyState);
+        //++++++ NOW TO DETECT STATE ++++++++++++++
+        if(XhR.readyState===4){
+            const data = JSON.parse(this.responseText);
+
+
+            console.log(typeof data);
+            console.log(data.followers); // followers is 0. It's not State of Unsent i.e; 0.
+
+        }
+    }
+
+    // Log the readyState after open() method (1: OPENED)
+    // console.log(XhR.readyState);
+
+    // Send the GET request
+    XhR.send();
+
+    // Note: The onreadystatechange event can be used to track the state changes iteratively.
+</script>
+</html>

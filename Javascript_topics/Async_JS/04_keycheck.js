@@ -2,7 +2,11 @@ async function getKeyInfo(keyCode, key) {
     return new Promise((resolve) => {
         // Simulate an asynchronous operation (e.g., fetching data from an API)
         setTimeout(() => {
-            if (key === "Alt") {
+            if (key === "Enter") {
+                resolve("KeyEnter");
+            } else if (key === " ") {
+                resolve("KeySpace");
+            } else if (key === "Alt") {
                 resolve(`Key${key}`);
             } else {
                 resolve(`Key${key.toUpperCase()}`);
@@ -23,5 +27,8 @@ document.addEventListener('keydown', async function(event) {
     keyCodeCell.textContent = event.keyCode;
 
     const keyInfo = await getKeyInfo(event.keyCode, event.key);
-    codeCell.textContent = keyInfo;
+    codeCell.textContent = keyInfo === "KeySpace" ? "Space" : keyInfo;
+
+    // Display the pressed key in the "Key Pressed" column
+    document.getElementById('keyPressed').textContent = event.key === " " ? "Space" : event.key;
 });

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github User Card</title>
+    <style>
+        body {
+            background-color: #212121;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+
+        .card {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 80%;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #b5b515af;
+        }
+    </style>
+</head>
+<body style="background-color: #212121 ;color:#fff">
+    <button onclick="fetchAndDisplayData()"> Fetch Github Data</button>
+    <script>
+        function fetchAndDisplayData(){
+            const username = prompt('Enter Github username:');
+
+            // Check if the username is null (user clicked on Cancel)
+            if(username === null){
+                return; // return null(or nothing)
+                }
+            // Define the URL for the GitHub API request
+            const requestUrl = `https://api.github.com/users/${username}`;
+
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+            // Open a GET request to the specified URL
+            xhr.open('GET',requestUrl);
+
+            //Here, we now set up an event listener to track state changes
+            xhr.onreadystatechange = function () {
+            console.log(`Status: ${xhr.status}, Ready State: ${xhr.readyState}`);
+            // If the request has completed successfully and we have data to process
+            if (xhr.readyState == 4 ){
+                if(xhr.status == 200) {
+             // Here,The HTTP status code 200 OK indicates that the request was successful.
+            /*
+            Checking xhr.status === 200 is a common practice to ensure that the HTTP request 
+            was successful before attempting to process the response.
+            */
+
+            // Now, Let We Parse the responseText to a JavaScript object
+            const userData = JSON.parse(xhr.responseText);
+
+            //Now we will Create a GitHub user card dynamically
+            const github_card = createGitHubCard(userData);
+
+            // Everything is in the air so we've to Append the card to the body
+            document.body.appendChild(github_card);
+
+             // Display alert only when the request is successful
+            //  alert("GitHub User Data Fetched!");
+             }
+            else{
+            alert("Error! GitHub User not Found!");
+                }
+                }
+            };// End of OnReadyStateChange Event Listener Function Definition
+
+
+            // Now, Send the request and wait for the response'
+            xhr.send();
+       
+        }
+
+        // Function to create a GitHub user card dynamically
+        function createGitHubCard(userData){
+            //Create div element using DOM method
+            let github_card = document.createElement('div');
+            //Add class name to our created Element
+            github_card.classList.add('card');
+            // Create img tag
+            const userPhoto = document.createElement('img');
+            // Set attributes for image
+            userPhoto.src = userData.avatar_url;
+            userPhoto.alt = "User Photo";
+
+            const userName = document.createElement('h2');
+            userName.textContent ="Username : " + (userData.name || userData.login);
+
+            const userFollowers = document.createElement('p');
+            userFollowers.setAttribute('id','followers') ;
+            userFollowers.textContent="Followers : "+userData.followers;
+
+            const utilizeButton = document.createElement('button');
+            utilizeButton.setAttribute('id', 'utilize-btn');
+            utilizeButton.textContent='Utilize GitHub Data';
+            utilizeButton.addEventListener('click', function(){
+                //alert(profile.bio);
+                utilizeGitHubData(userData);
+            }
+            );
+            // Appending children elements to parent (card)
+            github_card.append(userPhoto,userName,userFollowers,utilizeButton);
+            return github_card;
+
+            // Or
+            //  Append elements to the card
+            // githubCard.appendChild(userPhoto);
+            // githubCard.appendChild(userName);
+            // githubCard.appendChild(userFollowers);
+            // githubCard.appendChild(utilizeButton);
+            }
+
+            function utilizeGitHubData(userData){
+                // Replace this with the actual functionality you want
+            alert(`GitHub Data Utilized:\n${JSON.stringify(userData, null, 2)}`);
+            }
+
+
+
+    </script>
+    
+</body>
+</html>
