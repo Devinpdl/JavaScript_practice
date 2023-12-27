@@ -123,7 +123,9 @@
             //Create div element using DOM method
             let github_card = document.createElement('div');
             //Add class name to our created Element
-            github_card.classList.add('card');
+            github_card.classList.add('card'); 
+            //Or another way ,, github_card.className='card';
+            
             // Create img tag
             const userPhoto = document.createElement('img');
             // Set attributes for image
@@ -136,6 +138,7 @@
             const userFollowers = document.createElement('p');
             userFollowers.setAttribute('id','followers') ;
             userFollowers.textContent="Followers : "+userData.followers;
+            //Or,, userFollowers.innerHTML="Followers : "+userData.followers;
 
             const utilizeButton = document.createElement('button');
             utilizeButton.setAttribute('id', 'utilize-btn');
