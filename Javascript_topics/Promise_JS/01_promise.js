@@ -189,6 +189,7 @@ Because, In case of .then, It goes on next line without waiting for result from 
 fetch('https://jsonplaceholder.typicode.com/userts')
   .then((response) => {
     if (!response.ok) {
+        //Or you can use response.status too to know the status
       throw new Error('Network response was not ok');
     }
     return response.json();
@@ -202,3 +203,6 @@ fetch('https://jsonplaceholder.typicode.com/userts')
     // Display a user-friendly error message on the UI
     // Example: showErrorMessage('Something went wrong. Please try again later.');
   });
+
+// Fetch is only response object and not reject, Okay......?
+// So we need to handle error/reject manually using then().catch() method...
