@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Method Learning</title>
+</head>
+<body style="background-color:#212121 ;color:#fff">
+    <script>
+        // fetch('02_readme.txt')
+        // .then(function(response){
+        //     console.log(response);
+        // });
+
+    //Lets we see the response that we get in text Now.
+    // fetch("https://api.github.com/users/octocat")
+    // .then((response) => {
+    //     console.log(response.text());
+    //     });
+    // fetch("https://api.github.com/users/Devinpdl")
+    // fetch('02_readme.txt')
+    // .then((response) => {
+    //    return response.text();
+    //     })
+    //     // .then( (urresult)=>{
+    //     //     console.log(urresult);
+    //     // }
+    //     // );
+
+    //     .then( (urresult)=>{
+    //         document.write(urresult);
+    //     }
+    //     );
+
+        //+++++ ALL THIS CAN BE DONE IN SIMPLE WAY TOO +++++++
+        // .then(response => response.text())
+        // .then(urresult => document.write(urresult));
+        // Here, No need to write return in one line code
+        // And, No need to give a variable name wrapping into parenthesis like (urresult) in one line code even if
+        // If.... We're Using function
+
+
+        // .then((response) => response.text())
+        // .then((urresult) => document.write(urresult));
+
+        // ++++++ NOW, FETCHING DATA AND CONVETING INTO JSON INSTEAD OF TEXT++++
+    //    fetch('https://jsonplaceholder.typicode.com/users')
+    // //    .then(response=> response.json())
+    // // To make there's error and it's for .catch((e)=>document.write(`<h1 style="color:red">Error Occured ${e}</h1>`))
+    // // .then(data=>data.json1())
+    // .then(data=>data.json())
+    // //    .then(heredatacomes=> console.log(heredatacomes))
+    // //As like .then(data=>data.json1()) Now we check for .then(heredatacomes=> console.log(heredatacomes))'s error
+    // .then(heredatacomes=>console.log(heredatacomes1))
+    //    //Here, heredatacomes is just variable name you can take any as you wish.
+    //    //It just indicates that inside that variable some data is coming...
+
+    //    //++++THERE'S NO GUARANTEE THAT FETCH WILL BRING SUCCESSFUL DATA+++
+    //    //So, To handle errors and successfull responses we use catch block..
+    //    //fetch('notfound.html').then(response=>{if(response.ok) {return response.text()} else {throw Error
+    //     //('Not Found!')} }).catch(errorMessage=>console.log(errorMessage))
+    //     //We Can also Use Then And Catch In One Line Code Like This:
+    //     //fetch('notfound.html').then(response=>response.ok?response.text():Promise.reject(new Error('
+    //     // Not Found'))).then(pageText=>console.log(pageText)).catch(errorMessage=>console.log(errorMessage))
+        
+    //     // .catch(error=>console.log(error))
+
+    //     // Showing the error to the users.
+    //     .catch((e)=>document.write(`<h1 style="color:red">Error Occured! Can't Fetch Data ${e}</h1>`))
+
+    //+++++++++++++ NOW, FROM JSON OBJECT WE USE THEIR SPECIFIED INDEXED DATA ++++++++
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    // .then(data=>data.json())
+    // .then(herecomesdata=>{
+    //     console.log(herecomesdata);
+
+    //     for(let x in herecomesdata){
+    //         let div = document.createElement("div");
+    //         div.innerHTML=`User ID :${herecomesdata[x].id}, User Name :${herecomesdata[x].name}, And Email is: ${herecomesdata[x].email} <br>`;
+    //         document.body.appendChild(div);
+    //     }
+    // })
+
+    // +++++++++ NOW, ASSESSING THE INNER OBJECTS TOO +++++++++++++
+    fetch('https://jsonplaceholder.typicode.com/2users1')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  // To handle the returned response of the above now we use another .then (It's also called chaining)
+  .then(herecomesdata => {
+    console.log(herecomesdata);
+
+    for (let x in herecomesdata) {
+      let div = document.createElement("div");
+      let a = `User ID :${herecomesdata[x].id}, User Name :${herecomesdata[x].name}, And Email is: ${herecomesdata[x].email} - Address: ${herecomesdata[x].address.city} <br>`;
+      div.innerHTML = a;
+      document.body.appendChild(div);
+    }
+  })
+  .catch(error => {
+    document.write(`<h1 style="color:red">Error Occurred! ${error.message}</h1>`);
+  });
+
+    </script>
+</body>
+</html>
