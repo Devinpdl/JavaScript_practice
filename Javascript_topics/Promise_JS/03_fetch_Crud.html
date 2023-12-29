@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        button {
+            margin-bottom: 10px;
+        }
+
+        input {
+            margin-right: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CRUD App</h1>
+
+    <button onclick="fetchData()">Fetch Data</button>
+
+    <div>
+        <h2>Create User</h2>
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="email" placeholder="Email">
+        <button onclick="createUser()">Create</button>
+    </div>
+
+    <div>
+        <h2>Users</h2>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userList"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+        function fetchData() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => displayUsers(data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayUsers(users) {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+
+            users.forEach(user => {
+                const tr = document.createElement('tr');
+
+                const idCell = document.createElement('td');
+                idCell.textContent = user.id;
+                tr.appendChild(idCell);
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = user.name;
+                tr.appendChild(nameCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.textContent = user.email;
+                tr.appendChild(emailCell);
+
+                const actionCell = document.createElement('td');
+
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = () => editUser(user.id, user.name, user.email);
+                actionCell.appendChild(editButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteUser(user.id);
+                actionCell.appendChild(deleteButton);
+
+                tr.appendChild(actionCell);
+
+                userList.appendChild(tr);
+            });
+        }
+
+        function createUser() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            if (!name || !email) {
+                alert('Please enter both name and email.');
+                return;
+            }
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('User created:', data);
+                    fetchData();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editUser(userId, userName, userEmail) {
+            const newName = prompt('Enter new name:', userName);
+            const newEmail = prompt('Enter new email:', userEmail);
+
+            if (newName === null || newEmail === null) {
+                return; // If user clicks Cancel, do nothing
+            }
+
+            fetch(`${apiUrl}/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: newName,
+                    email: newEmail,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('User updated:', data);
+                    fetchData();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function deleteUser(userId) {
+            fetch(`${apiUrl}/${userId}`, {
+                method: 'DELETE',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('User deleted:', data);
+                    fetchData();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+</body>
+</html>
