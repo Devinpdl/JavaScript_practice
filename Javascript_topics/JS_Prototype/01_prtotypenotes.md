@@ -8,24 +8,38 @@
 - **Accessing Prototype:** The `__proto__` property is used to access an object's prototype.
 - **Example:**
   ```javascript
-  // Define a constructor function
+  # JavaScript Prototypes
+
+## 1. Introduction to Prototypes
+
+**Definition:** A prototype is an object from which other objects inherit properties. It acts as a template that allows objects to share common properties and methods.
+
+**Base Object:** Every object in JavaScript, except the base object, has a prototype.
+
+## 2. __proto__ Property
+
+**Accessing Prototype:** The `__proto__` property is used to access an object's prototype.
+
+**Example:**
+```javascript
+// Define a constructor function
 function Animal(name, species) {
-    this.name = name;
-    this.species = species;
+  this.name = name;
+  this.species = species;
 }
 
 // Create an instance of the Animal constructor
 const lion = new Animal("Leo", "Lion");
 
-// Access the prototype using __proto__
-const animalPrototype = lion.__proto__;
+// Access the prototype using proto
+const animalPrototype = lion.proto;
 
 // Print information about the prototype
 console.log("Animal Prototype:", animalPrototype);
 
 // Define a method in the prototype
 animalPrototype.makeSound = function () {
-    console.log("Generic animal sound");
+  console.log("Generic animal sound");
 };
 
 // Call the method using the instance
@@ -34,8 +48,8 @@ lion.makeSound(); // Output: Generic animal sound
 // Create another instance of the Animal constructor
 const parrot = new Animal("Polly", "Parrot");
 
-// Access the prototype using __proto__
-const parrotPrototype = parrot.__proto__;
+// Access the prototype using proto
+const parrotPrototype = parrot.proto;
 
 // Print information about the prototype
 console.log("Parrot Prototype:", parrotPrototype);
