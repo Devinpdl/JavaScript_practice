@@ -1,16 +1,6 @@
 # JavaScript Prototypes
 
 ## 1. Introduction to Prototypes
-- **Definition:** A prototype is an object from which other objects inherit properties. It acts as a template that allows objects to share common properties and methods.
-- **Base Object:** Every object in JavaScript, except the base object, has a prototype.
-
-## 2. \_\_proto\_\_ Property
-- **Accessing Prototype:** The `__proto__` property is used to access an object's prototype.
-- **Example:**
-  ```javascript
-  # JavaScript Prototypes
-
-## 1. Introduction to Prototypes
 
 **Definition:** A prototype is an object from which other objects inherit properties. It acts as a template that allows objects to share common properties and methods.
 
