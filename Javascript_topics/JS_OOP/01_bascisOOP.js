@@ -165,6 +165,7 @@ function User(username, loginCount, isAdmin) {
 
 // Create the first user, user1
 const user1 = new User('Devin Samundra', 4, true);
+//Here, new User is creating an Object user1 using constructor function.
 
 // Create the second user, user2
 const user2 = new User('Error', 9, false);
