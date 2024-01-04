@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACT TOPICS</title>
+</head>
+<body>
+    <button>Click Button</button>
+    <!-- <button onclick={()=>handleClick()}>Button Clicked</button> -->
+    <!-- In React, we mainly inquire for onclick property and inside of onclick we pass/inject
+    JavaScript method handleClick()... But this code doesn't run; there are so many problems in it -->
+    <!-- But there's a syntax to handle this situation at that time, and we have to use .bind methods to solve
+    these issues -->
+    <!-- Or, -->
+    <!-- onclick={handleClick()}>Button Clicked</button> -->
+    
+</body>
+<script>
+    class React {
+        constructor() {
+            this.library = "React";
+            this.server = "https://localhost:5002";
+
+            // requirements
+            document.querySelector('button')
+            .addEventListener('click', this.handleClick.bind(this));
+        }
+
+        handleClick() {
+            console.log("Button Clicked");
+            console.log(this.server);
+            console.log(this);
+            // Here, the reference of 'this' is manually created.
+            // So, you also have to use .bind method so that we can take the reference of 'this' from the above
+            // class i.e., React not from window or any other object.
+            // We do bind in the above class React so that the reference is getting from handleClick.
+        }
+    }
+
+    const app = new React();
+    // As soon as the work is happened.
+    // Get the reference of the button as soon as it's clicked.
+    // And there must be a handle method when clicked i.e.; 'click'. i.e.; either form submit or logs in the console.
+    // document.querySelector("button").addEventListener('click', app.handle);
+</script>
+</html>
